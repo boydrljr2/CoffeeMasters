@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var menuManager = MenuManager()
+    @StateObject var orderManager = OrderManager()
+    
     var body: some View {
         TabView {
             MenuPage()
