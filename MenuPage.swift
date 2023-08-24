@@ -11,13 +11,20 @@ struct MenuPage: View {
     @State var name = ""
     
     var body: some View {
-        VStack {
-            Spacer()
-            TextField("Enter your name: ", text: $name)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-            Text("Hello \(name)")
-            Spacer()
+        NavigationView {
+            List {
+                ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    NavigationLink(destination: DetailsPage()) {
+                        ProductItem(product: Product(
+                            id: 1,
+                            name: "Americano",
+                            description: "",
+                            price: 12.25,
+                            image: ""
+                        ))
+                    }
+                }
+            }.navigationTitle("Products")
         }
     }
 }
