@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct MenuPage: View {
-    @State var name = ""
+    
+    //@State var name = ""
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    NavigationLink(destination: DetailsPage()) {
+                    NavigationLink(destination: ProductDetailsPage()) {
                         ProductItem(product: Product(
                             id: 1,
-                            name: "Americano",
+                            name: "Cafe Americano",
                             description: "",
                             price: 12.25,
                             image: ""

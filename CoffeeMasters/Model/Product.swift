@@ -14,6 +14,6 @@ struct Product: Decodable, Identifiable {
     var price: Double
     var image: String
     var imageURL: URL {
-        URL(string: "https://boydrljr2.github.io/coffeemasters/api/images/\(self.image)")!
+        URL(string: "https://firtman.github.io/coffeemasters/api/images/\(self.image)")!
     }
 }

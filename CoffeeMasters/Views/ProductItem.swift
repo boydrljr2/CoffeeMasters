@@ -14,7 +14,9 @@ struct ProductItem: View {
     
     var body: some View {
             VStack{
-                Image("BlackCoffee")
+                AsyncImage(url: URL(string: product.imageURL)!, content: { image in
+                    image.resizable()
+                })
                     .frame(width: .infinity, height: 150)
                     .background(Color("AccentColor"))
                 HStack {
