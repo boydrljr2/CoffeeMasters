@@ -21,7 +21,7 @@ struct MenuPage: View {
                             name: "Cafe Americano",
                             description: "",
                             price: 12.25,
-                            image: ""
+                            image: "BlackCoffee"
                         ))
                     }
                 }

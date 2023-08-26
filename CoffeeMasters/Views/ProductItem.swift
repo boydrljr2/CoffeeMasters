@@ -14,11 +14,12 @@ struct ProductItem: View {
     
     var body: some View {
             VStack{
-                AsyncImage(url: URL(string: product.imageURL)!, content: { image in
-                    image.resizable()
-                })
+                //AsyncImage(url: product.imageURL)
+                Image(product.image)
                     .frame(width: .infinity, height: 150)
                     .background(Color("AccentColor"))
+                    .cornerRadius(5)
+
                 HStack {
                     VStack(alignment: .leading) {
                         Text(product.name)
@@ -33,7 +34,7 @@ struct ProductItem: View {
             }
             .background(Color("SurfaceBackground"))
             .cornerRadius(10)
-            .padding(.trailing)
+            //.padding(.trailing)
         }
 }
 
@@ -41,10 +42,10 @@ struct ProductItem_Previews: PreviewProvider {
     static var previews: some View {
         ProductItem(product: Product(
                         id: 1,
-                        name: "Americano",
+                        name: "Cafe Americano",
                         description: "",
                         price: 12.25,
-                        image: ""
+                        image: "BlackCoffee"
         ))
     }
 }
