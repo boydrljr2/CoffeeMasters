@@ -16,9 +16,11 @@ struct ProductItem: View {
             VStack{
                 //AsyncImage(url: product.imageURL)
                 Image(product.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: .infinity, height: 150)
                     .background(Color("AccentColor"))
-                    .cornerRadius(5)
+                    .cornerRadius(10)
 
                 HStack {
                     VStack(alignment: .leading) {
@@ -28,7 +30,8 @@ struct ProductItem: View {
                         Text("$ \(product.price, specifier: "%.2f")")
                             .font(.caption)
 
-                    }.padding(10)
+                    }
+                    .padding(10)
                     Spacer()
                 }
             }

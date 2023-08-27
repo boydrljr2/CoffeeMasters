@@ -10,41 +10,48 @@ import SwiftUI
 struct ProductDetailsPage: View {
     
     @State var quantity = 1
+    var product: Product
+    @EnvironmentObject var cartManager: CartManager
+    @Environment(\.dismiss) var dismiss
+    
+    
     
     var body: some View {
         ScrollView {
+
+            Image(product.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(5)
+                .frame(maxWidth: .infinity, maxHeight: 150)
+                .background(Color("Alt2"))
+                .padding(.top, 32)
+
             
-            Text("Cafe Americano")
-                .font(.title2)
+            Text(product.name)
                 .frame(maxWidth: .infinity)
                 .multilineTextAlignment(.leading)
                 .padding(24)
             
-            Image("BlackCoffee")
-                .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
-                .frame(maxWidth: .infinity, idealHeight: 150, maxHeight: 150)
-                .padding(.top, 32)
-        
-            
-            Text("An entreating aroma with hints of larceny and chaos invites you to Pittsburgh.")
+            Text(product.description)
                 .frame(maxWidth: .infinity)
-                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                .multilineTextAlignment(.leading)
                 .padding(24)
-                .font(.body)
-            
+                        
             HStack {
-                Text("$44.45")
+                Text("$\(product.price, specifier: "%.2f") ea")
                 Stepper(value: $quantity, in: 1...9) {}
             }
                 .frame(maxWidth: .infinity)
                 .padding(30)
             
-            Text("Subtotal $44.45")
+            Text("Subtotal $\(Double(quantity) * product.price, specifier: "%.2f" ) ")
                 .bold()
                 .padding(12)
             
             Button("Add \(quantity) to Order") {
-                //TODO
+                cartManager.add(product: product, quantity: quantity)
+                dismiss()
             }
                 .padding()
                 .frame(width: 250)
@@ -52,12 +59,17 @@ struct ProductDetailsPage: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(25)
         }
-        //.navigationTitle(product.name)
     }
 }
 
 struct ProductDetailsPage_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailsPage()
+        ProductDetailsPage(
+            product:
+                Product(
+                    id: 1, name: "Medium", description: "Medium coffee", price: 19.95, image: "BlackCoffee"
+                )
+            )
+            .environmentObject(CartManager())
     }
 }

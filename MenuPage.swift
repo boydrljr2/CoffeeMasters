@@ -8,30 +8,27 @@
 import SwiftUI
 
 struct MenuPage: View {
-    
-    //@State var name = ""
+    @EnvironmentObject var menuManager: MenuManager
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    NavigationLink(destination: ProductDetailsPage()) {
-                        ProductItem(product: Product(
-                            id: 1,
-                            name: "Cafe Americano",
-                            description: "",
-                            price: 12.25,
-                            image: "BlackCoffee"
-                        ))
+                ForEach(menuManager.menu) { category in
+                    Section(header: Text(category.name)) {
+                        ForEach(category.products) { product in
+                            NavigationLink(destination: ProductDetailsPage(product: product)) {
+                                ProductItem(product: product)
+                            }
+                        }
                     }
                 }
             }.navigationTitle("Products")
         }
     }
 }
-        
+
 struct MenuPage_Previews: PreviewProvider {
     static var previews: some View {
-        MenuPage()
+        MenuPage().environmentObject(MenuManager())
     }
 }

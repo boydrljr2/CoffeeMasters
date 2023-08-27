@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var menuManager = MenuManager()
-    @StateObject var orderManager = OrderManager()
+    @EnvironmentObject var cartManager: CartManager
     
     var body: some View {
+        
         VStack {
             AppTitle()
             Spacer()
@@ -47,16 +47,10 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
+                .environmentObject(CartManager())
+                .environmentObject(MenuManager())
         }
     }
 }
 
-/*
- Spacer()
- TextField("Enter your name: ", text: $name)
-     .multilineTextAlignment(.center)
-     .frame(maxWidth: .infinity)
- Text("Hello \(name)")
- Spacer()
- 
- */
+
