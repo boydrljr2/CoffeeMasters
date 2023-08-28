@@ -35,7 +35,7 @@ struct OrderPage: View {
                             OrderItem(item: item)
                         }
                     }
-                    .listRowBackground(Color("Background"))
+                    .listRowBackground(Color("CardBackground"))
                     
                     
                     Section("YOUR DETAILS") {
@@ -48,7 +48,7 @@ struct OrderPage: View {
                                 .textFieldStyle(.roundedBorder)
                         }.padding(.top)
                          .padding(.bottom)
-                    }.listRowBackground(Color("Background"))
+                    }.listRowBackground(Color("CardBackground"))
                     
                     Section() {
                         HStack {
@@ -70,7 +70,7 @@ struct OrderPage: View {
                             }
                                 .padding()
                                 .frame(width: 250.0)
-                                .background(Color("Alternative2"))
+                                .background(Color("Alt2"))
                                 .foregroundColor(Color.black)
                                 .cornerRadius(25)
                                 

@@ -14,7 +14,8 @@ struct MenuPage: View {
         NavigationView {
             List {
                 ForEach(menuManager.menu) { category in
-                    Section(header: Text(category.name)) {
+                    Section(header: Text(category.name).font(.title3).bold()) 
+                        {
                         ForEach(category.products) { product in
                             NavigationLink(destination: ProductDetailsPage(product: product)) {
                                 ProductItem(product: product)
